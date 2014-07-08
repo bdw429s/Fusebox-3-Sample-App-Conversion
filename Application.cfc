@@ -41,8 +41,13 @@ component{
 			}
 		}
 
-		// Process ColdBox Request
-		application.cbBootstrap.onRequestStart( arguments.targetPage );
+        // ColdBox Reload Checks
+        application.cbBootStrap.reloadChecks();
+
+        //Process a ColdBox request only
+		if( findNoCase('index.cfm',listLast(arguments.targetPage,"/")) ){
+			application.cbBootStrap.processColdBoxRequest();
+		}
 
 		return true;
 	}
